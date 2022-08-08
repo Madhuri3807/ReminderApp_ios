@@ -1,7 +1,3 @@
-//
-//  ResetPasswordVC.swift
-//  ReminderApp
-
 
 import UIKit
 
