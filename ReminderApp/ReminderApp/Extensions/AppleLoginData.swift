@@ -62,32 +62,32 @@ extension SocialLoginManager {
 
 //MARK : Apple Login Delegate
 @available(iOS 13.0, *)
-// extension SocialLoginManager: ASAuthorizationControllerPresentationContextProviding {
+extension SocialLoginManager: ASAuthorizationControllerPresentationContextProviding {
 
-//     @available(iOS 13.0, *)
-//     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-// //        return UIApplication.topViewController()!.view.window!
-//         return UIApplication.topViewController()!.view.window!
-//     }
+    @available(iOS 13.0, *)
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+//        return UIApplication.topViewController()!.view.window!
+        return UIApplication.topViewController()!.view.window!
+    }
 
-//     @available(iOS 13.0, *)
-//     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-//         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
-//         print(appleIDCredential.user, appleIDCredential.fullName as Any, appleIDCredential.email as Any)
-//         var dataObj: SocialLoginDataModel = SocialLoginDataModel()
-//         dataObj.socialId = appleIDCredential.user
-//         dataObj.loginType = "A"
-//         dataObj.firstName =  appleIDCredential.fullName?.givenName ?? ""
-//         dataObj.lastName = appleIDCredential.fullName?.familyName ?? ""
-//         dataObj.email = appleIDCredential.email ?? ""
-//         delegate?.socialLoginData(data: dataObj)
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
+        print(appleIDCredential.user, appleIDCredential.fullName as Any, appleIDCredential.email as Any)
+        var dataObj: SocialLoginDataModel = SocialLoginDataModel()
+        dataObj.socialId = appleIDCredential.user
+        dataObj.loginType = "A"
+        dataObj.firstName =  appleIDCredential.fullName?.givenName ?? ""
+        dataObj.lastName = appleIDCredential.fullName?.familyName ?? ""
+        dataObj.email = appleIDCredential.email ?? ""
+        delegate?.socialLoginData(data: dataObj)
 
-//     }
+    }
 
-//     @available(iOS 13.0, *)
-//     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-// //        Alert.shared.showAlert(message: "Something went wrong", completion: nil)
-//     }
-// }
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+//        Alert.shared.showAlert(message: "Something went wrong", completion: nil)
+    }
+}
 
 
