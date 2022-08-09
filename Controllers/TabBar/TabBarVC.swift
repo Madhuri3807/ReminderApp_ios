@@ -12,10 +12,12 @@ class TabBarVC: UITabBarController {
     //MARK: Outlet
     
     //MARK: Class Variable
+    var userType: UserType?
     
     //MARK: Custom Method
     
     func setUpView(){
+        self.userType = AppDelegate.shared.userType
         self.applyStyle()
         self.tabBarSetup()
     }
@@ -27,14 +29,26 @@ class TabBarVC: UITabBarController {
     func tabBarSetup() {
         if let tabBar = tabBar as? STTabbar {
             print(tabBar)
-            tabBar.centerButtonActionHandler = {
-                if let nextVC = UIStoryboard.main.instantiateViewController(withIdentifier: "AddReminderVC") as? AddReminderVC {
-                    (self.parent as? UINavigationController)?.pushViewController(nextVC, animated: true)
-                    
+            if AppDelegate.shared.userType == .User {
+                tabBar.centerButtonActionHandler = {
+                    if let nextVC = UIStoryboard.main.instantiateViewController(withIdentifier: "AddReminderVC") as? AddReminderVC {
+                        (self.parent as? UINavigationController)?.pushViewController(nextVC, animated: true)
+                        
+                    }
+                    (self.parent as? UINavigationController)?.navigationBar.isHidden = true
                 }
-                (self.parent as? UINavigationController)?.navigationBar.isHidden = true
+            } else {
+                tabBar.buttonImage = UIImage(named: "sendAlert")
+                tabBar.centerButtonActionHandler = {
+                    if let nextVC = UIStoryboard.main.instantiateViewController(withIdentifier: "SendAlertVC") as? SendAlertVC {
+                        (self.parent as? UINavigationController)?.pushViewController(nextVC, animated: true)
+                        
+                    }
+                    (self.parent as? UINavigationController)?.navigationBar.isHidden = true
+                }
             }
         }
+        
     }
     
     //MARK: Action Method
