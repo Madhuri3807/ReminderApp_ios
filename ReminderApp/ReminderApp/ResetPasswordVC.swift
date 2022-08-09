@@ -1,3 +1,4 @@
+
 import UIKit
 
 class ResetPasswordVC: UIViewController {
@@ -51,25 +52,25 @@ class ResetPasswordVC: UIViewController {
 }
 
 
-//MARK:- Extension for Forgot Password Function
-extension ResetPasswordVC {
+// //MARK:- Extension for Forgot Password Function
+// extension ResetPasswordVC {
 
-    func updatePassword(password: String) {
-        let ref = AppDelegate.shared.db.collection(rUser).document(self.email)
-        ref.updateData([
-            rPassword: password
-        ]){ err in
-            if let err = err {
-                print("Error updating document: \(err)")
-                self.navigationController?.popViewController(animated: true)
-            } else {
-                print("Document successfully updated")
-                Alert.shared.showAlert(message: "Your Password has been updated successfully !!!") { (true) in
-                    if let vc = UIStoryboard.main.instantiateViewController(withClass: LoginVC.self){
-                        UIApplication.shared.setRootController(for: vc)
-                    }
-                }
-            }
-        }
-    }
-}
+//     func updatePassword(password: String) {
+//         let ref = AppDelegate.shared.db.collection(rUser).document(self.email)
+//         ref.updateData([
+//             rPassword: password
+//         ]){ err in
+//             if let err = err {
+//                 print("Error updating document: \(err)")
+//                 self.navigationController?.popViewController(animated: true)
+//             } else {
+//                 print("Document successfully updated")
+//                 Alert.shared.showAlert(message: "Your Password has been updated successfully !!!") { (true) in
+//                     if let vc = UIStoryboard.main.instantiateViewController(withClass: LoginVC.self){
+//                         UIApplication.shared.setRootController(for: vc)
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
