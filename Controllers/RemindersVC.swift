@@ -141,49 +141,49 @@ extension RemindersVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-//     func getData(){
+    func getData(){
         
-//         Firestore.firestore().collection(rReminder).document(FirebaseAuth.Auth.auth().currentUser?.uid ?? "").collection("userReminders").addSnapshotListener{querySnapshot , error in
+        Firestore.firestore().collection(rReminder).document(FirebaseAuth.Auth.auth().currentUser?.uid ?? "").collection("userReminders").addSnapshotListener{querySnapshot , error in
             
-//             guard let snapshot = querySnapshot else {
-//                 print("Error")
-//                 return
-//             }
-//             self.array.removeAll()
-//             if snapshot.documents.count != 0 {
-//                 for data in snapshot.documents {
-//                     let data1 = data.data()
-//                     if let name: String = data1[rTitle] as? String, let date: String = data1[rDate] as? String, let notes: String = data1[rDescription] as? String, let location = data1[rLocation] as? GeoPoint {
+            guard let snapshot = querySnapshot else {
+                print("Error")
+                return
+            }
+            self.array.removeAll()
+            if snapshot.documents.count != 0 {
+                for data in snapshot.documents {
+                    let data1 = data.data()
+                    if let name: String = data1[rTitle] as? String, let date: String = data1[rDate] as? String, let notes: String = data1[rDescription] as? String, let location = data1[rLocation] as? GeoPoint {
                        
                         
-//                         print("Data Count : \(self.array.count)")
-// //                        let lat = location["longitude"] as! Double
+                        print("Data Count : \(self.array.count)")
+//                        let lat = location["longitude"] as! Double
                         
-//                         self.array.append(ReminderModel( id: data.documentID, title: name, date: date, notes: notes, lat: location.latitude, lng: location.longitude))
-//                     }
-//                     self.tblReminders.delegate = self
-//                     self.tblReminders.dataSource = self
-//                     self.tblReminders.reloadData()
-//                 }
-//             }else{
-//                 Alert.shared.showAlert(message: "No Data Found !!!", completion: nil)
-//             }
-//         }
-//     }
+                        self.array.append(ReminderModel( id: data.documentID, title: name, date: date, notes: notes, lat: location.latitude, lng: location.longitude))
+                    }
+                    self.tblReminders.delegate = self
+                    self.tblReminders.dataSource = self
+                    self.tblReminders.reloadData()
+                }
+            }else{
+                Alert.shared.showAlert(message: "No Data Found !!!", completion: nil)
+            }
+        }
+    }
     
-//     func removeData(id: String){
-//         let ref =  Firestore.firestore().collection(rReminder).document(FirebaseAuth.Auth.auth().currentUser?.uid ?? "").collection("userReminders").document(id)
-//         ref.delete(){ err in
-//             if let err = err {
-//                 print("Error updating document: \(err)")
-//                 self.navigationController?.popViewController(animated: true)
-//             } else {
-//                 print("Document successfully deleted")
-//                 self.getData()
-//             }
-//         }
-//     }
-// }
+    func removeData(id: String){
+        let ref =  Firestore.firestore().collection(rReminder).document(FirebaseAuth.Auth.auth().currentUser?.uid ?? "").collection("userReminders").document(id)
+        ref.delete(){ err in
+            if let err = err {
+                print("Error updating document: \(err)")
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                print("Document successfully deleted")
+                self.getData()
+            }
+        }
+    }
+}
         
        
 
