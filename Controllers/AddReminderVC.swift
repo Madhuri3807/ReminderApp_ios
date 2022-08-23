@@ -159,47 +159,47 @@ class AddReminderVC: UIViewController {
     }
     
     
-//     func addReminder(date: String, title: String, description: String, address: String) {
+    func addReminder(date: String, title: String, description: String, address: String) {
         
-//         let dataGeo = GeoPoint(latitude: self.selectedLocation.latitude, longitude: self.selectedLocation.longitude)
+        let dataGeo = GeoPoint(latitude: self.selectedLocation.latitude, longitude: self.selectedLocation.longitude)
         
-//         Firestore.firestore().collection(rReminder).document(FirebaseAuth.Auth.auth().currentUser?.uid ?? "").collection("userReminders").addDocument(data: [
-//             rTitle: title,
-//             rDescription : description,
-//             rDate: date,
-//             rLocation : dataGeo,
-//             rAddress: address
-//         ]){
-//           err in
-//             if let err = err {
-//                 print("Error adding document: \(err)")
-//             } else {
-//                 self.navigationController?.popViewController(animated: true)
-//             }
-//         }
-//     }
+        Firestore.firestore().collection(rReminder).document(FirebaseAuth.Auth.auth().currentUser?.uid ?? "").collection("userReminders").addDocument(data: [
+            rTitle: title,
+            rDescription : description,
+            rDate: date,
+            rLocation : dataGeo,
+            rAddress: address
+        ]){
+          err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
 
-//     func updateReminder(date: String, title: String, description: String,id: String, address: String) {
-//         let ref =  Firestore.firestore().collection(rReminder).document(FirebaseAuth.Auth.auth().currentUser?.uid ?? "").collection("userReminders").document(id)
-//         let dataGeo = GeoPoint(latitude: self.selectedLocation.latitude, longitude: self.selectedLocation.longitude)
-//         ref.updateData([
-//             rTitle: title,
-//             rDescription : description,
-//             rDate: date,
-//             rLocation : dataGeo,
-//             rAddress: address
-//         ]){ err in
-//             if let err = err {
-//                 print("Error updating document: \(err)")
-//             } else {
-//                 print("Document successfully updated")
-//                 Alert.shared.showAlert(message: "Your Reminder has been Updated !!!", completion: nil)
-//                 UIApplication.shared.setTab()
-//             }
-//         }
-//     }
+    func updateReminder(date: String, title: String, description: String,id: String, address: String) {
+        let ref =  Firestore.firestore().collection(rReminder).document(FirebaseAuth.Auth.auth().currentUser?.uid ?? "").collection("userReminders").document(id)
+        let dataGeo = GeoPoint(latitude: self.selectedLocation.latitude, longitude: self.selectedLocation.longitude)
+        ref.updateData([
+            rTitle: title,
+            rDescription : description,
+            rDate: date,
+            rLocation : dataGeo,
+            rAddress: address
+        ]){ err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+                Alert.shared.showAlert(message: "Your Reminder has been Updated !!!", completion: nil)
+                UIApplication.shared.setTab()
+            }
+        }
+    }
 
-// }
+}
 
 //MARK:- GMSMapView Delegate Method
 extension AddReminderVC: GMSMapViewDelegate{

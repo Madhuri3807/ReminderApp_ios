@@ -76,32 +76,32 @@ class SignUpVC: UIViewController {
 }
 
 
-// //MARK:- Extension for Login Function
-// extension  SignUpVC {
+//MARK:- Extension for Login Function
+extension  SignUpVC {
     
-//     func register(name: String, email: String, password:String, phone: String){
-//         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password){authResult, error in
-//             let id = authResult?.user.uid ?? ""
-//             if error != nil {createAccount(name: name, email: email, password: password, phone: phone, id : id)} else {
-//                 Alert.shared.showAlert(message: error?.localizedDescription ?? "", completion: nil)
-//             }
-//         }
+    func register(name: String, email: String, password:String, phone: String){
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password){authResult, error in
+            let id = authResult?.user.uid ?? ""
+            if error != nil {createAccount(name: name, email: email, password: password, phone: phone, id : id)} else {
+                Alert.shared.showAlert(message: error?.localizedDescription ?? "", completion: nil)
+            }
+        }
         
         
-//         func createAccount(name: String, email: String, password: String, phone: String, id: String) {
-//             Firestore.firestore().collection(rUser).document(FirebaseAuth.Auth.auth().currentUser?.uid ?? "" ).setData([rEmail: email,
-//                                                                                                                          rName: name,
-//                                                                                                                         rPhone: phone]){
-//                 err in
-//                 if err != nil {
-//                     UIApplication.shared.setTab()
-//                     Alert.shared.showAlert(message: "Error!!!", completion: nil)
-//                     self.flag = true
-//                 }else{
-//                     UIApplication.shared.setTab()
-//                     Alert.shared.showAlert(message: "Welcome!!!", completion: nil)
-//                 }
-//             }
-//         }
-//     }
-// }
+        func createAccount(name: String, email: String, password: String, phone: String, id: String) {
+            Firestore.firestore().collection(rUser).document(FirebaseAuth.Auth.auth().currentUser?.uid ?? "" ).setData([rEmail: email,
+                                                                                                                         rName: name,
+                                                                                                                        rPhone: phone]){
+                err in
+                if err != nil {
+                    UIApplication.shared.setTab()
+                    Alert.shared.showAlert(message: "Error!!!", completion: nil)
+                    self.flag = true
+                }else{
+                    UIApplication.shared.setTab()
+                    Alert.shared.showAlert(message: "Welcome!!!", completion: nil)
+                }
+            }
+        }
+    }
+}
